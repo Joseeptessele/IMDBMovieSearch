@@ -28,20 +28,15 @@ export default ({ location, history }) => {
 
   const renderMovies = () => {
     if (movies !== null) {
-      console.log("2");
-
       return movies.map((value, index) => (
         <MovieResult key={index} {...value} />
       ));
     }
 
-    if (isLoading) {
-      console.log("3");
-
-      return <CircularProgress size={100} color="primary" />;
-    }
-
-    if (movies === null) {
+    // if (isLoading) {
+    //   return <CircularProgress size={100} color="primary" />;
+    // }
+    else if (movies === null) {
       return (
         <div>
           <h1>NÃO EXISTEM FILMES COM ESSE NOME</h1>

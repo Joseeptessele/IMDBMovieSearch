@@ -7,7 +7,6 @@ import { addFavList } from "../../redux/actions/Search";
 import { Creators as MovieActions } from "../../redux/reducers/Search";
 
 const MovieResult = ({ Title, Year, Type, imdbID, Poster, history }) => {
-  console.log(history);
   const dispatch = useDispatch();
 
   const classes = styles();

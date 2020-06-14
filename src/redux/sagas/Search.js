@@ -26,10 +26,8 @@ export function* searchMovie({ payload }) {
       "GET"
     );
     if (!search.data.Error) {
-      console.log("encontrei");
       yield put(searchCreators.searchMovieSuccess(search));
     } else {
-      console.log("nao encontrei");
       yield put(searchCreators.searchMovieFailure(search));
     }
   } catch (error) {

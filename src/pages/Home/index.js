@@ -24,6 +24,10 @@ export default ({ history }) => {
     history.push(`/results?movieName=${searchText}`);
   };
 
+  const goToFavoriteMoviesList = (event) => {
+    history.push(`/favorites/`);
+  };
+
   const handleCleanTextClick = (event) => {
     setSearchText("");
   };
@@ -63,7 +67,7 @@ export default ({ history }) => {
             variant="contained"
             color="primary"
             size="large"
-            onClick={handleSearchTextClick}
+            onClick={goToFavoriteMoviesList}
             className={classes.searchButton}
           >
             Lista de favoritos

@@ -10,16 +10,9 @@ import { Creators as MovieActions } from "../../redux/reducers/Search";
 
 export default ({ location, history }) => {
   const dispatch = useDispatch();
-  const movies = useSelector((state) => state.search.search);
+  const movies = useSelector((state) => state.search.favList);
   const isLoading = useSelector((state) => state.search.isLoading);
   const [isLooked, setIsLooked] = useState(false);
-  useEffect(() => {
-    const { movieName } = queryString.parse(location.search);
-    if (movieName && !isLooked) {
-      setIsLooked(true);
-      dispatch(MovieActions.searchMovieRequest({ movieName }));
-    }
-  });
 
   const clearMovies = () => {
     dispatch(MovieActions.clearMoviesList());
@@ -27,24 +20,16 @@ export default ({ location, history }) => {
   };
 
   const renderMovies = () => {
-    if (movies !== null) {
-      console.log("2");
-
+    if (movies) {
       return movies.map((value, index) => (
         <MovieResult key={index} {...value} />
       ));
     }
 
-    if (isLoading) {
-      console.log("3");
-
-      return <CircularProgress size={100} color="primary" />;
-    }
-
-    if (movies === null) {
+    if (!movies) {
       return (
         <div>
-          <h1>NÃO EXISTEM FILMES COM ESSE NOME</h1>
+          <h1>You didn't add favorite movies yet.</h1>
         </div>
       );
     }
@@ -54,6 +39,7 @@ export default ({ location, history }) => {
   return (
     <>
       <button onClick={clearMovies}>Back</button>
+      <h1>All favorite movies</h1>
       <Container>{renderMovies()}</Container>
     </>
   );
